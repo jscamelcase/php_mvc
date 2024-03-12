@@ -3,6 +3,12 @@
 class Router {
     protected $routes = [];
 
+    /**
+     * @param string $method
+     * @param string $uri
+     * @param string $controller
+     * @return void
+     */
     public function registerRoute($method, $uri, $controller) {
         $this->routes[] = [
             'method' => $method,
@@ -86,7 +92,7 @@ class Router {
     public function route($uri, $method) {
         foreach($this->routes as $route) {
             if($route['uri'] === $uri && $route['method'] === $method) {
-                require basePAth($route['controller']);
+                require basePath($route['controller']);
                 return;
             }
         }
@@ -95,6 +101,7 @@ class Router {
 
 
     }
+
 
 
 }
