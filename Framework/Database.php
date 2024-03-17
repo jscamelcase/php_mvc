@@ -1,6 +1,11 @@
 <?php
 
-class Database {
+namespace Framework;
+
+use PDO;
+
+class Database
+{
     public $conn;
 
     /**
@@ -19,7 +24,6 @@ class Database {
             $this->conn = new PDO($dsn, $config['username'], $config['password'], $options);
         } catch (PDOException $e) {
             throw new Exception("Database connection failed: {$e->getMessage()}");
-
         }
     }
 
@@ -32,20 +36,19 @@ class Database {
      * @throws PDOException
      *
      */
-    public function query($query, $params = []) {
+    public function query($query, $params = [])
+    {
         try {
             $sth = $this->conn->prepare($query);
 
             //Bind named params
-            foreach($params as $param => $value) {
+            foreach ($params as $param => $value) {
                 $sth->bindValue(':' . $param, $value);
             }
             $sth->execute();
             return $sth;
-
         } catch (PDOException $e) {
             throw new Exception("Query failed to execute: {$e->getMessage()}");
         }
-
     }
 }
