@@ -3,16 +3,14 @@
   "description": "Job listing application",
   "authors": [
     {
-    "name": "Carl Paraskevas",
-    "email":"carl.paraskevas@gmail.com"
+      "name": "Carl Paraskevas",
+      "email": "carl.paraskevas@gmail.com"
     }
   ],
   "autoload": {
-    "psr-4" : {
+    "psr-4": {
       "Framework\\": "Framework/",
       "App\\": "App/"
     }
   }
-
-
 }
