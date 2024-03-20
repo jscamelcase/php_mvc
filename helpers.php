@@ -7,7 +7,8 @@
  * @return string
  */
 
-function basePath($path = '') {
+function basePath($path = '')
+{
     return __DIR__ . '/' . $path;
 }
 
@@ -18,14 +19,15 @@ function basePath($path = '') {
  * @return void
  *
  */
-function loadView($name, $data = []) {
-   $viewPath = basePath("App/views/{$name}.view.php");
-   extract($data);
-   if(file_exists($viewPath)) {
-       require $viewPath;
-   } else {
-       echo "View {$viewPath} not found!";
-   }
+function loadView($name, $data = [])
+{
+    $viewPath = basePath("App/views/{$name}.view.php");
+    extract($data);
+    if (file_exists($viewPath)) {
+        require $viewPath;
+    } else {
+        echo "View {$viewPath} not found!";
+    }
 }
 
 /**
@@ -36,7 +38,8 @@ function loadView($name, $data = []) {
  *
  */
 
-function loadPartial($name) {
+function loadPartial($name)
+{
     $partialPath = basePath("App/views/partials/{$name}.php");
     if (file_exists($partialPath)) {
         require $partialPath;
@@ -51,7 +54,8 @@ function loadPartial($name) {
  * @param mixed $value
  * @return void
  */
-function inspect($value) {
+function inspect($value)
+{
     echo '<pre>';
     var_dump($value);
     echo '</pre>';
@@ -63,7 +67,8 @@ function inspect($value) {
  * @param mixed $value
  * @return void
  */
-function inspectAndDie($value) {
+function inspectAndDie($value)
+{
     echo '<pre>';
     var_dump($value);
     echo '</pre>';
@@ -76,9 +81,19 @@ function inspectAndDie($value) {
  * @param string $salary
  * @return string Formatted Salary
  */
-function formatSalary($salary) {
+function formatSalary($salary)
+{
     return '$' . number_format(floatval($salary));
 }
 
-
-
+/**
+ * Sanitize Data
+ * 
+ * @param string $dirty
+ * @return string
+ * 
+ */
+function sanitize($dirty)
+{
+    return filter_var(trim($dirty), FILTER_SANITIZE_SPECIAL_CHARS);
+}
